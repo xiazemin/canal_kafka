@@ -1,0 +1,95 @@
+1,mysql -h 127.0.0.1 -uroot -p12345678
+2,运行init.sql
+3,下载canal.deployer-1.1.1.tar.gz,解压
+4,用conf 替换掉conf
+5,sh bin/startup.sh
+6,#!/bin/bash
+  curDir=`pwd`
+  cd /Users/didi/zookeeper/server1/zookeeper-3.4.6/bin/
+  ./zkServer.sh start
+
+  #/Users/didi/zookeeper/server1/zookeeper-3.4.6/bin/
+  ./zkServer.sh status
+
+  cd /Users/didi/zookeeper/server2/zookeeper-3.4.6/bin/
+7,$sh zookeeper-shell.sh 127.0.0.1:2181
+8,cd /Users/didi/kafka/server1/kafka_2.10-0.8.2.1/bin
+9,$./kafka-console-producer.sh --broker-list localhost:9092 --topic example
+10,$./kafka-console-consumer.sh  --zookeeper localhost:2181 --topic example --from-beginning
+11,运行结果
+kafka:
+{"ID":"9","X":"2018-11-06 20:38:45"}
+     {"ID":"3","X":"2018-11-06 20:38:46"}
+{"ID":"4","X":"2018-11-06 20:38:46"}
+{"ID":"5","X":"2018-11-06 20:38:46"}
+{"ID":"6","X":"2018-11-06 20:38:46"}
+{"ID":"7","X":"2018-11-06 20:38:46"}
+{"ID":"8","X":"2018-11-06 20:38:46"}
+{"ID":"9","X":"2018-11-06 20:38:46"}
+canal client:
+===没有数据了===
+===没有数据了===
+================> binlog[mysql-bin.000003 : 24715],name[test,xdual], eventType: UPDATE
+-------> before
+ID : 3  update= false
+X : 2018-11-06 20:38:45  update= false
+-------> after
+ID : 3  update= false
+X : 2018-11-06 20:38:46  update= true
+-------> before
+ID : 4  update= false
+X : 2018-11-06 20:38:45  update= false
+-------> after
+ID : 4  update= false
+X : 2018-11-06 20:38:46  update= true
+-------> before
+ID : 5  update= false
+X : 2018-11-06 20:38:45  update= false
+-------> after
+ID : 5  update= false
+X : 2018-11-06 20:38:46  update= true
+-------> before
+ID : 6  update= false
+X : 2018-11-06 20:38:45  update= false
+-------> after
+ID : 6  update= false
+X : 2018-11-06 20:38:46  update= true
+-------> before
+ID : 7  update= false
+X : 2018-11-06 20:38:45  update= false
+-------> after
+ID : 7  update= false
+X : 2018-11-06 20:38:46  update= true
+-------> before
+ID : 8  update= false
+X : 2018-11-06 20:38:45  update= false
+-------> after
+ID : 8  update= false
+X : 2018-11-06 20:38:46  update= true
+-------> before
+ID : 9  update= false
+X : 2018-11-06 20:38:45  update= false
+-------> after
+ID : 9  update= false
+X : 2018-11-06 20:38:46  update= true
+================> binlog[mysql-bin.000003 : 24715],name[test,xdual], eventType: UPDATE
+{"ID":"3","X":"2018-11-06 20:38:46"} <nil>
+[srama]2018/11/06 20:46:33 ClientID is the default of 'sarama', you should consider setting it to something application-specific.
+[srama]2018/11/06 20:46:33 producer/broker/1 starting up
+[srama]2018/11/06 20:46:33 producer/broker/1 state change to [open] on example/0
+{"ID":"4","X":"2018-11-06 20:38:46"} <nil>
+{"ID":"5","X":"2018-11-06 20:38:46"} <nil>
+[srama]2018/11/06 20:46:33 Connected to broker at localhost:9093 (registered as #1)
+[srama]2018/11/06 20:46:33 partition=0, offset=66
+[srama]2018/11/06 20:46:33 partition=0, offset=67
+[srama]2018/11/06 20:46:33 partition=0, offset=68
+{"ID":"6","X":"2018-11-06 20:38:46"} <nil>
+[srama]2018/11/06 20:46:33 partition=0, offset=69
+{"ID":"7","X":"2018-11-06 20:38:46"} <nil>
+{"ID":"8","X":"2018-11-06 20:38:46"} <nil>
+{"ID":"9","X":"2018-11-06 20:38:46"} <nil>
+[srama]2018/11/06 20:46:33 partition=0, offset=70
+[srama]2018/11/06 20:46:33 partition=0, offset=71
+[srama]2018/11/06 20:46:33 partition=0, offset=72
+===没有数据了===
+===没有数据了===
